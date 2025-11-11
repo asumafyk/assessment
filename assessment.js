@@ -14,20 +14,33 @@ assessmentButton.addEventListener( //イベント検知をしたら実行され�
       }
       //診断結果表示エリアの作成
       resultDivision.innerText = '' //divタグをから文字で上書きすることで、空にしている
-      /*
       while (tweetDivision.firstChild) {
         tweetDivision.removeChild(tweetDivision.firstChild)
       }  //上の奴と同じ処理
-      */
-      const header = document.createElement('h3') //h3タグの作成
-      header.innerText = '診断結果' //タグの内側のテキストを設定
-      resultDivision.appendChild(header) //divタグの子要素として追加
+     //headerDivisionの作成
+      const headerDivision = document.createElement('div') //h3タグの作成
+      headerDivision.setAttribute('class', 'card-header text-bg-primary') //boostrap用のclass
+      headerDivision.innerText = '診断結果' //タグの内側のテキストを設定
+      //bodyDivisionの作成
+      
+      //bodyDivisionの作成
+      const bodyDivision = document.createElement('div') //divタグの作成
+      bodyDivision.setAttribute('class', 'card-body') //boostrap用のclass
 
       const paragraph = document.createElement('p') //pタグの作成
+      paragraph.setAttribute('class', 'card-text')  //class設定
       const result = assessment(userName) //診断結果を作成
       paragraph.innerText = result //pタグのテキストを設定
-      resultDivision.appendChild(paragraph) //divタグの子要素として追加
+      bodyDivision.appendChild(paragraph) //divタグの子要素として追加
       console.log(assessment(userName))
+
+      //resultDivisionにBoostrapのスタイルを適用する
+      resultDivision.setAttribute('class', 'card')
+
+      //headerDivisionとbodyDivisionをresultDivisionに差し込む
+      resultDivision.appendChild(headerDivision) //divタグの子要素として追加
+      resultDivision.appendChild(bodyDivision)
+
 
       //ツイートエリアの作成
       tweetDivision.innerText = ''
